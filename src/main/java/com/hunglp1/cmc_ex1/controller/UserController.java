@@ -17,7 +17,7 @@ public class UserController {
     private UserService userService;
 
     @GetMapping("/users")
-    public List<Users> getUser(@RequestHeader(name="permissionName", required = false) String permissionName){
+    public List<Users> getUser(@RequestHeader(name = "permissionName", required = false) String permissionName) {
 
         System.out.println(userService.getAll(permissionName));
         return userService.getAll(permissionName);
@@ -25,12 +25,16 @@ public class UserController {
 
     @DeleteMapping("/users/{username}")
     @Transactional
-    public void delUser(@PathVariable("username") String username){
+    public void delUser(@PathVariable("username") String username) {
 
 
         userService.deleteByUsername(username);
     }
 
+    @DeleteMapping("/users}")
+    public Users createUser(@RequestBody Users user) {
+        return userService.addUser(user);
+    }
 
 
 }

@@ -11,4 +11,6 @@ public interface UserService {
 
     @Transactional
     void deleteByUsername(String username);
+
+    Users addUser(Users users);
 }
